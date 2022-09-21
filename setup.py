@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='RS Image Convertor',
-    version='0.1.1',    
+    version='0.1.3',
     description='Converts DNG and HEIC to JPG',
     url='https://github.com/shuds13/pyexample',
     author='Sarim Bin Waseem',
@@ -10,14 +10,14 @@ setup(
     license='BSD 2-clause',
     packages=['rsimageconvertor'],
     install_requires=['rawpy',
-                      'pyheif',                     
+                      'pyheif',
                       'imageio',
                       'Pillow'],
 
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: BSD License',  
+        'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux :: Windows',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.9',
