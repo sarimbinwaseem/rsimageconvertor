@@ -14,7 +14,7 @@ class Convertor:
 			allFiles = files
 
 		# input("Do you want to continue: ")
-
+		formatt = input("PNG or JPG: ")
 		for file in files:
 			if file.endswith(".dng"):
 				file = os.path.join(root, file)
@@ -25,9 +25,17 @@ class Convertor:
 					print("Processing RAW")
 					rgbFile = raw.postprocess()
 
-				print("Saving JPEG format")
-				print()
-				imageio.imsave(file.replace("dng", "jpg"), rgbFile)
+				if formatt.lower() == "jpg":
+
+					print("Saving JPG format")
+					print()
+					imageio.imsave(file.replace("dng", "jpg"), rgbFile)
+
+				elif formatt.lower() == "png":
+
+					print("Saving PNG format")
+					print()
+					imageio.imsave(file.replace("dng", "png"), rgbFile)
 
 			elif file.endswith(".heic"):
 				print(file)
@@ -41,8 +49,16 @@ class Convertor:
 		    				"raw",
 		    				heicFile.mode,
 		    				heicFile.stride,)
-				print("Saving as JPG")
-				rgbFile.save(file.replace("heic", "jpg"), "JPEG")
+
+				if formatt.lower() == "jpg":
+
+					print("Saving as JPG")
+					rgbFile.save(file.replace("heic", "jpg"), "JPEG")
+
+				elif formatt.lower() == "png":
+
+					print("Saving as PNG")
+					rgbFile.save(file.replace("heic", "png"), "PNG")
 
 	def convertOne(self, filePath):
 
@@ -56,9 +72,19 @@ class Convertor:
 				print("Processing RAW")
 				rgbFile = raw.postprocess()
 
-			print("Saving JPG format")
-			print()
-			imageio.imsave(file.replace("dng", "jpg"), rgbFile)
+			formatt = input("PNG or JPG: ")
+			if formatt.lower() == "jpg":
+
+				print("Saving JPG format")
+				print()
+				imageio.imsave(file.replace("dng", "jpg"), rgbFile)
+
+			elif formatt.lower() == "png":
+
+				print("Saving PNG format")
+				print()
+				imageio.imsave(file.replace("dng", "png"), rgbFile)
+
 
 		elif filename.endswith(".heic"):
 			print(filename)
@@ -72,5 +98,14 @@ class Convertor:
 	    				"raw",
 	    				heicFile.mode,
 	    				heicFile.stride,)
-			print("Saving as JPG")
-			rgbFile.save(file.replace("heic", "jpg"), "JPEG")				
+
+			formatt = input("PNG or JPG: ")
+			if formatt.lower() == "jpg":
+
+				print("Saving as JPG")
+				rgbFile.save(file.replace("heic", "jpg"), "JPEG")
+
+			elif formatt.lower() == "png":
+
+				print("Saving as PNG")
+				rgbFile.save(file.replace("heic", "png"), "PNG")
