@@ -4,7 +4,7 @@ setup(
     name='RS Image Convertor',
     version='0.2.1',
     description='Converts DNG and HEIC to JPG',
-    url='https://github.com/shuds13/pyexample',
+    url='https://github.com/sarimbinwaseem/rsimageconvertor',
     author='Sarim Bin Waseem',
     author_email='',
     license='BSD 2-clause',
