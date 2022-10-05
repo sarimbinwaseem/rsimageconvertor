@@ -1,6 +1,6 @@
 import rawpy, imageio, pyheif
 from PIL import Image
-import os
+import os, sys, uuid
 
 class Convertor:
 	def __init__(self):
@@ -109,3 +109,59 @@ class Convertor:
 
 				print("Saving as PNG")
 				rgbFile.save(file.replace("heic", "png"), "PNG")
+
+	def resizeOne(self, image, size):
+
+		print(os.stat(image).st_size / 1000, "KB")
+		imageName = os.path.basename(image)
+		directory = os.path.dirname(image)
+		print(imageName)
+		print(directory)
+
+		extension = imageName.split('.')[-1]
+		print(extension)
+		
+		minus = 2
+
+		# imgName = os.path.split(image)[-1][:-4]
+		if imageName.endswith(".jpeg"):
+			imgName = imageName[:-5]
+		else:
+			imgName = imageName[:-4]
+		print(imgName)
+
+		uu = uuid.uuid4()
+		uu = str(uu.node)
+		# outname = uu + '.' + extension
+		outname = uu + '.' + "jpg"
+
+		image = Image.open(image)
+
+		while True:
+			width = image.width
+			height = image.height
+
+			ff = (width * minus) / 100
+			reqWidth = width - ff
+			cof = width / reqWidth
+			reqHeight = height / cof
+
+			image = image.resize((image.width - minus, image.height - minus))
+			image = image.convert("RGB")
+			image.save(outname, quality = 95, optimize = True)
+
+			finalSize = os.stat(os.path.abspath(outname)).st_size / 1000
+			print(finalSize, "KB")
+
+			if finalSize <= size:
+				print("GOTCHA")
+				# image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 95, optimize = True)
+				image.save(os.path.join(directory, f"{imgName}E.jpg"), quality = 95, optimize = True)
+				os.remove(outname)
+				break
+			else:
+				minus += 1
+
+if __name__ == "__main__":
+	con = Convertor()
+	con.resizeOne("/home/rapidswords/FM/Edited/FM11/FM11.4.png", 1999)
