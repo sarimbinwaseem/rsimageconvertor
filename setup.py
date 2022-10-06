@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(
     name='RS Image Convertor',
-    version='0.2.1',
-    description='Converts DNG and HEIC to JPG',
+    version='0.3.1',
+    description='Converts RAW and iPhone formats to JPG and PNG, compress size',
     url='https://github.com/sarimbinwaseem/rsimageconvertor',
     author='Sarim Bin Waseem',
     author_email='',
-    license='BSD 2-clause',
+    license='MIT-License',
     packages=['rsimageconvertor'],
     install_requires=['rawpy',
                       'pyheif',

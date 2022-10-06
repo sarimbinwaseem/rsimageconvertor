@@ -110,7 +110,7 @@ class Convertor:
 				print("Saving as PNG")
 				rgbFile.save(file.replace("heic", "png"), "PNG")
 
-	def resizeOne(self, image, size):
+	def compressOne(self, image, size, form = "same"):
 
 		print(os.stat(image).st_size / 1000, "KB")
 		imageName = os.path.basename(image)
@@ -132,8 +132,11 @@ class Convertor:
 
 		uu = uuid.uuid4()
 		uu = str(uu.node)
-		# outname = uu + '.' + extension
-		outname = uu + '.' + "jpg"
+		
+		if form == "same":
+			outname = uu + '.' + extension
+		else:
+			outname = uu + '.' + "form"
 
 		image = Image.open(image)
 
@@ -155,8 +158,10 @@ class Convertor:
 
 			if finalSize <= size:
 				print("GOTCHA")
-				# image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 95, optimize = True)
-				image.save(os.path.join(directory, f"{imgName}E.jpg"), quality = 95, optimize = True)
+				if form == "same":
+					image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 95, optimize = True)
+				else:
+					image.save(os.path.join(directory, f"{imgName}E.{form}"), quality = 95, optimize = True)
 				os.remove(outname)
 				break
 			else:
@@ -164,4 +169,4 @@ class Convertor:
 
 if __name__ == "__main__":
 	con = Convertor()
-	con.resizeOne("/home/rapidswords/FM/Edited/FM11/FM11.4.png", 1999)
+	con.resizeOne("/home/rapidswords/FM/Edited/FM11/FM11.4.png", 1999, "jpg")
