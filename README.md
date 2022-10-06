@@ -27,6 +27,6 @@ Simply type png or jpg
 con.compressOne("path/to/image.ext", size = 2000, form  = "same")
 ``
 
-path: path to image
+path: path to image<br>
 size: maximum size needed with miniumum resize of picture<br>
 form: save as PNG or JPG or any other PIL supported format, if "same" is passed, final image will be in same format as original.
