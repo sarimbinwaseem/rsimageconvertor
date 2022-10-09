@@ -112,70 +112,60 @@ class Convertor:
 
 	def compressOne(self, image, size, form = "same"):
 
-		if form not in ["same", "png", "jpg", "jpeg"]:
-			print("Invalid image format requested")
-			return -1
+		print(os.stat(image).st_size / 1000, "KB")
+		imageName = os.path.basename(image)
+		directory = os.path.dirname(image)
+		print(imageName)
+		print(directory)
 
+		extension = imageName.split('.')[-1]
+		print(extension)
+		
+		minus = 2
+
+		# imgName = os.path.split(image)[-1][:-4]
+		if imageName.endswith(".jpeg"):
+			imgName = imageName[:-5]
 		else:
+			imgName = imageName[:-4]
+		print(imgName)
 
-			print("Original Picture size:", os.stat(image).st_size / 1000, "KB")
-			imageName = os.path.basename(image)
-			directory = os.path.dirname(image)
+		uu = uuid.uuid4()
+		uu = str(uu.node)
+		
+		if form == "same":
+			outname = uu + '.' + extension
+		else:
+			outname = uu + '.' + "form"
 
-			# directory, imageName = os.path.split(image)
+		image = Image.open(image)
 
-			print(imageName)
-			print(directory)
+		while True:
+			width = image.width
+			height = image.height
 
-			extension = imageName.split('.')[-1]
-			print(extension)
-			
-			minus = 2
+			ff = (width * minus) / 100
+			reqWidth = width - ff
+			cof = width / reqWidth
+			reqHeight = height / cof
 
-			# imgName = os.path.split(image)[-1][:-4]
-			if imageName.endswith(".jpeg"): # This approach b/c some image names could contain extra
-											# dots i.e. FGDD5.4.4.jpg as I encountered myself
-				imgName = imageName[:-5]
-			else:
-				imgName = imageName[:-4]
-			print(imgName)
+			image = image.resize((image.width - minus, image.height - minus))
+			image = image.convert("RGB")
+			image.save(outname, quality = 95, optimize = True)
 
-			uu = uuid.uuid4()
-			uu = str(uu.node)
-			
-			if form == "same":
-				outname = uu + '.' + extension
-			else:
-				outname = uu + '.' + form
+			finalSize = os.stat(os.path.abspath(outname)).st_size / 1000
+			print(finalSize, "KB")
 
-			image = Image.open(image)
-
-			while True:
-				width = image.width
-				height = image.height
-
-				ff = (width * minus) / 100
-				reqWidth = width - ff
-				cof = width / reqWidth
-				reqHeight = height / cof
-
-				image = image.resize((image.width - minus, image.height - minus))
-				image = image.convert("RGB")
-				image.save(outname, quality = 95, optimize = True)
-
-				finalSize = os.stat(os.path.abspath(outname)).st_size / 1000
-				print(finalSize, "KB")
-
-				if finalSize <= size:
-					print("GOTCHA")
-					if form == "same":
-						image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 95, optimize = True)
-					else:
-						image.save(os.path.join(directory, f"{imgName}E.{form}"), quality = 95, optimize = True)
-					os.remove(outname)
-					break
+			if finalSize <= size:
+				print("GOTCHA")
+				if form == "same":
+					image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 95, optimize = True)
 				else:
-					minus += 1
+					image.save(os.path.join(directory, f"{imgName}E.{form}"), quality = 95, optimize = True)
+				os.remove(outname)
+				break
+			else:
+				minus += 1
 
 if __name__ == "__main__":
 	con = Convertor()
