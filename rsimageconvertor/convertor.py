@@ -112,13 +112,15 @@ class Convertor:
 
 	def compressOne(self, image, size, form = "same"):
 
+		divSize = 1024 if sys.platform == "win32" else 1000
+
 		if form not in ["same", "png", "jpg", "jpeg"]:
 			print("Invalid image format requested")
 			return -1
 
 		else:
 
-			print("Original Picture size:", os.stat(image).st_size / 1000, "KB")
+			print("Original Picture size:", os.stat(image).st_size / divSize, "KB")
 			imageName = os.path.basename(image)
 			directory = os.path.dirname(image)
 
@@ -163,7 +165,7 @@ class Convertor:
 				image = image.convert("RGB")
 				image.save(outname, quality = 95, optimize = True)
 
-				finalSize = os.stat(os.path.abspath(outname)).st_size / 1000
+				finalSize = os.stat(os.path.abspath(outname)).st_size / divSize
 				print(finalSize, "KB")
 
 				if finalSize <= size:
