@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='RS Image Convertor',
-    version='0.3.1',
+    version='0.3.2',
     description='Converts RAW and iPhone formats to JPG and PNG, compress size',
     url='https://github.com/sarimbinwaseem/rsimageconvertor',
     author='Sarim Bin Waseem',

@@ -1,4 +1,0 @@
-rawpy
-pyheif
-imageio
-Pillow
