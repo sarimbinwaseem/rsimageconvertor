@@ -3,7 +3,9 @@
 
 #### Install directly from github:
 
-`pip install git+https://github.com/sarimbinwaseem/rsimageconvertor.git@main`
+```bash
+pip install git+https://github.com/sarimbinwaseem/rsimageconvertor.git@main
+```
 
 #### Import and run
 
