@@ -129,24 +129,28 @@ class Convertor:
 			print(imageName)
 			print(directory)
 
-			extension = imageName.split('.')[-1]
+			extension = os.path.splitext(imageName)[-1]
 			print(extension)
 			
 			minus = 2
 
 			# imgName = os.path.split(image)[-1][:-4]
-			if imageName.endswith(".jpeg"): # This approach b/c some image names could contain extra
-											# dots i.e. FGDD5.4.4.jpg as I encountered myself
-				imgName = imageName[:-5]
-			else:
-				imgName = imageName[:-4]
+
+			# This approach b/c some image names could contain extra
+			# dots i.e. FGDD5.4.4.jpg as I encountered myself
+			# if imageName.endswith(".jpeg"): 
+			# 	imgName = imageName[:-5]
+			# else:
+			# 	imgName = imageName[:-4]
+
+			imgName = os.path.splitext(imageName)[0]
 			print(imgName)
 
 			uu = uuid.uuid4()
 			uu = str(uu.node)
 			
 			if form == "same":
-				outname = uu + '.' + extension
+				outname = uu + extension
 			else:
 				outname = uu + '.' + form
 
@@ -156,14 +160,19 @@ class Convertor:
 				width = image.width
 				height = image.height
 
-				ff = (width * minus) / 100
-				reqWidth = width - ff
-				cof = width / reqWidth
-				reqHeight = height / cof
+				# ff = (width * minus) / 100
+				# reqWidth = width - ff
+				# cof = width / reqWidth
+				# reqHeight = height / cof
 
-				image = image.resize((image.width - minus, image.height - minus))
-				image = image.convert("RGB")
-				image.save(outname, quality = 95, optimize = True)
+				reqWidth = width - minus
+				reqHeight = self.adjHeight(width, height, reqWidth)
+
+				image = image.resize((reqWidth, reqHeight))
+				# image = image.convert("RGB")
+				image.save(outname, quality = 85,
+					# optimize = True
+					)
 
 				finalSize = os.stat(os.path.abspath(outname)).st_size / divSize
 				print(finalSize, "KB")
@@ -179,6 +188,13 @@ class Convertor:
 				else:
 					minus += 1
 
+	def adjHeight(self, sourceWidth, sourceHeight, width):
+		return (sourceHeight * width) // sourceWidth
+
+	def adjWidth(self, sourceWidth, sourceHeight, height):
+		return (height * sourceWidth) // sourceHeight
+
 if __name__ == "__main__":
 	con = Convertor()
-	con.resizeOne("/home/rapidswords/FM/Edited/FM11/FM11.4.png", 1999, "jpg")
+	con.compressOne("/home/rapidswords/Desktop/Visca-Image-Editor/largeImage.jpg",
+		1999, "jpg")
