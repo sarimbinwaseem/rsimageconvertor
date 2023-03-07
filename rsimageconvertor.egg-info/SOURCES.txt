@@ -1,0 +1,9 @@
+README.md
+setup.py
+rsimageconvertor/__init__.py
+rsimageconvertor/convertor.py
+rsimageconvertor.egg-info/PKG-INFO
+rsimageconvertor.egg-info/SOURCES.txt
+rsimageconvertor.egg-info/dependency_links.txt
+rsimageconvertor.egg-info/requires.txt
+rsimageconvertor.egg-info/top_level.txt
