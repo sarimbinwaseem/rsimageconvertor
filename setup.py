@@ -7,8 +7,8 @@ setup(
     name='rsimageconvertor',
     version='0.3.3',
     description='Converts RAW and iPhone formats to JPG and PNG, compress size',
-    long_description = long_description
-    long_description_content_type = "text/markdown"
+    long_description=long_description,
+    long_description_content_type = "text/markdown",
     url='https://github.com/sarimbinwaseem/rsimageconvertor',
     author='Sarim Bin Waseem',
     author_email='',
