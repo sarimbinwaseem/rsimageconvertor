@@ -7,6 +7,8 @@
 pip install git+https://github.com/sarimbinwaseem/rsimageconvertor.git@main
 ```
 
+### Convertor
+
 #### Import and run
 
 ``
@@ -25,6 +27,8 @@ A prompt will ask for PNG or JPEG file format<br>
 Simply type png or jpg
 
 ## Size Compression
+#### Compresses size on disk with minimum impact on resolution and quality.
+
 ``
 con.compressOne("path/to/image.ext", size = 2000, form  = "same")
 ``

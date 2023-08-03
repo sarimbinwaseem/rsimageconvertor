@@ -1,25 +1,33 @@
 from setuptools import setup
+import os
+
+version = '0.4.3'
+author = "Sarim Bin Waseem"
 
 with open("README.md", "r") as file:
     long_description = file.read()
 
+with open(os.path.join("rsimageconvertor", "__init__.py"), "w", encoding = "UTF-8") as file:
+    file.write(f'''__version__ = "{version}"
+__author__ = "{author}"''')
+
 setup(
-    name='rsimageconvertor',
-    version='0.3.3',
-    description='Converts RAW and iPhone formats to JPG and PNG, compress size',
-    long_description=long_description,
-    long_description_content_type = "text/markdown",
-    url='https://github.com/sarimbinwaseem/rsimageconvertor',
-    author='Sarim Bin Waseem',
-    author_email='',
-    license='MIT-License',
-    packages=['rsimageconvertor'],
-    install_requires=['rawpy',
+    name = 'rsimageconvertor',
+    version = version,
+    description = 'Converts RAW and iPhone formats to JPG and PNG, compress size',
+    long_description = long_description,
+    long_description_content_type  =  "text/markdown",
+    url = 'https://github.com/sarimbinwaseem/rsimageconvertor',
+    author = author,
+    author_email = '',
+    license = 'MIT-License',
+    packages = ['rsimageconvertor'],
+    install_requires = ['rawpy',
                       'pyheif',
                       'imageio',
                       'Pillow'],
 
-    classifiers=[
+    classifiers = [
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.9',

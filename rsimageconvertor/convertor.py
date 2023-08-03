@@ -126,11 +126,12 @@ class Convertor:
 
 			# directory, imageName = os.path.split(image)
 
-			print(imageName)
-			print(directory)
+			print("Image Name:", imageName)
+			print("Export directory:", directory)
 
 			extension = os.path.splitext(imageName)[-1]
-			print(extension)
+			print("Original Image Extension:", extension)
+			print("Export Image Extension:", form)
 			
 			minus = 2
 
@@ -144,7 +145,7 @@ class Convertor:
 			# 	imgName = imageName[:-4]
 
 			imgName = os.path.splitext(imageName)[0]
-			print(imgName)
+			print("Image Name:", imgName)
 
 			uu = uuid.uuid4()
 			uu = str(uu.node)
@@ -168,21 +169,24 @@ class Convertor:
 				reqWidth = width - minus
 				reqHeight = self.adjHeight(width, height, reqWidth)
 
+				# print("Req W:", reqWidth)
+				# print("Req H:", reqHeight)
+
 				image = image.resize((reqWidth, reqHeight))
 				# image = image.convert("RGB")
 				image.save(outname, quality = 85,
-					# optimize = True
+					optimize = True
 					)
 
 				finalSize = os.stat(os.path.abspath(outname)).st_size / divSize
-				print(finalSize, "KB")
+				print(f"Final Size: {finalSize} KB", end = "\r")
 
 				if finalSize <= size:
 					print("GOTCHA")
 					if form == "same":
-						image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 95, optimize = True)
+						image.save(os.path.join(directory, f"{imgName}E.{extension}"), quality = 85, optimize = True)
 					else:
-						image.save(os.path.join(directory, f"{imgName}E.{form}"), quality = 95, optimize = True)
+						image.save(os.path.join(directory, f"{imgName}E.{form}"), quality = 85, optimize = True)
 					os.remove(outname)
 					break
 				else:
@@ -196,5 +200,5 @@ class Convertor:
 
 if __name__ == "__main__":
 	con = Convertor()
-	con.compressOne("/home/rapidswords/Desktop/Visca-Image-Editor/largeImage.jpg",
-		1999, "jpg")
+	con.compressOne("/home/user/Desktop/pexels-stephan-seeber-1261728.jpg",
+		1500, "jpg")
