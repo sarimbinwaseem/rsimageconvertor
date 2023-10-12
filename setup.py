@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.4.3'
+version = '0.5.0'
 author = "Sarim Bin Waseem"
 
 with open("README.md", "r") as file:
