@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import os
 
 version = '0.4.3'
@@ -18,10 +18,11 @@ setup(
     long_description = long_description,
     long_description_content_type  =  "text/markdown",
     url = 'https://github.com/sarimbinwaseem/rsimageconvertor',
+    package_dir={"": "rsimageconvertor"},
     author = author,
     author_email = '',
     license = 'MIT-License',
-    packages = ['rsimageconvertor'],
+    packages = find_packages(where = "rsimageconvertor"),
     install_requires = ['rawpy',
                       'pyheif',
                       'imageio',
@@ -32,5 +33,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
 ) 

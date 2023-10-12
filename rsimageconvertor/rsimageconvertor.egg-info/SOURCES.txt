@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+rsimageconvertor/rsconvertor/__init__.py
+rsimageconvertor/rsconvertor/convertor.py
+rsimageconvertor/rsimageconvertor.egg-info/PKG-INFO
+rsimageconvertor/rsimageconvertor.egg-info/SOURCES.txt
+rsimageconvertor/rsimageconvertor.egg-info/dependency_links.txt
+rsimageconvertor/rsimageconvertor.egg-info/requires.txt
+rsimageconvertor/rsimageconvertor.egg-info/top_level.txt
