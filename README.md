@@ -1,3 +1,6 @@
+> [!WARNING]
+> Compression is not stable. Huge errors in implementation will destroy the output.
+
 # RS Image Convertor
 ### Using rawpy, imageio and pyheif
 
@@ -11,17 +14,20 @@ pip install git+https://github.com/sarimbinwaseem/rsimageconvertor.git@main
 
 #### Import and run
 
-``
-from rsimageconvertor.convertor import Convertor``<br>
-``
+```python
+from rsimageconvertor.convertor import Convertor
 con = Convertor()
-``
+```
 
 1. For one image<br>
-`` con.convertOne("path/to/image.<heic, dng, etc>")``
+```python 
+con.convertOne("path/to/image.<heic, dng, etc>")
+```
 
 2. For entire folder<br>
-`` con.convertAll("path/to/folder")``
+```python
+con.convertAll("path/to/folder")
+```
 
 A prompt will ask for PNG or JPEG file format<br>
 Simply type png or jpg
@@ -29,9 +35,9 @@ Simply type png or jpg
 ## Size Compression
 #### Compresses size on disk with minimum impact on resolution and quality.
 
-``
-con.compressOne("path/to/image.ext", size = 2000, form  = "same")
-``
+```python
+con.compressOne("path/to/image.<ext>", size = 2000, form  = "same")
+```
 
 path: path to image<br>
 size: maximum size needed with miniumum resize of picture<br>

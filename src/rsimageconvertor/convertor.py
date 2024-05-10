@@ -12,7 +12,7 @@ class Convertor:
         self.folder = None
         # self.filename = os.path.split(folder)[1]
 
-    def convertAll(self, folder) -> None:
+    def convertAll(self, folder: str) -> None:
         self.folder = folder
         allFiles = []
         for root, dirs, files in os.walk(self.folder):
@@ -25,7 +25,7 @@ class Convertor:
 
             self._convertImage(filePath, formatt)
 
-    def _convertImage(self, filePath, formatt) -> None:
+    def _convertImage(self, filePath: str, formatt: str) -> None:
 
         root, filename = os.path.split(filePath)
         if filename.endswith(".dng"):
@@ -37,7 +37,6 @@ class Convertor:
                 print("[+] Processing RAW")
                 rgbFile = raw.postprocess()
 
-            # formatt = input("PNG or JPG: ")
             if formatt.lower() == "jpg":
 
                 print("[+] Saving JPG format")
@@ -65,7 +64,6 @@ class Convertor:
                 heicFile.stride,
             )
 
-            # formatt = input("PNG or JPG: ")
             if formatt.lower() == "jpg":
 
                 print("Saving as JPG")
@@ -79,7 +77,15 @@ class Convertor:
         else:
             print("[!] Not HEIC or a RAW image")
 
-    def compressOne(self, image, size, form="same"):
+    def compressOne(self, image: str, size: int, form: str = "same"):
+        """
+        Compresses image to defined size on disk.
+
+        :param: image: path to image: type: str
+        :param: size: size to compress until: type: int
+        :param: form: format to save to, "same" will save 
+            to the original format: type: str
+        """
 
         divSize = 1024 if sys.platform == "win32" else 1000
 
