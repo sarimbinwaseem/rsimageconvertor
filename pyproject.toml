@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools"]  # REQUIRED if [build-system] table is used
+build-backend = "setuptools.build_meta"  # If not defined, then legacy behavior can happen.
+
+
+[project]
+name = "rsimageconvertor"
+
+version = "0.5.0"  # REQUIRED, although can be dynamic
+
+description = "Converts RAW to photo, compress size on disk"
+
+readme = "README.md"
+
+requires-python = ">=3.10"
+
+license = {file = "LICENSE"}
+
+keywords = ["raw", "raw photo", "heic", "compress"]
+
+authors = [
+  {name = "Sarim Bin Waseem", email = "sarimbinwaseem@protonmail.com" }
+]
+
+maintainers = [
+  {name = "Sarim Bin Waseem", email = "sarimbinwaseem@protonmail.com" }
+]
+
+classifiers = [
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 4 - Beta",
+
+  # Indicate who your project is intended for
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Build Tools",
+
+  # Pick your license as you wish
+  "License :: OSI Approved :: MIT License",
+
+  # Specify the Python versions you support here. In particular, ensure
+  # that you indicate you support Python 3. These classifiers are *not*
+  # checked by "pip install". See instead "requires-python" key in this file.
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+# This field lists other packages that your project depends on to run.
+# Any package you put here will be installed by pip when your project is
+# installed, so they must be valid existing projects.
+#
+dependencies = [
+  "pillow", "rawpy", "imageio", "pyheif"
+]
+
+
+[project.urls]
+"Homepage" = "https://github.com/sarimbinwaseem/rsimageconvertor"
+"Bug Reports" = "https://github.com/sarimbinwaseem/rsimageconvertor/issues"
+# "Funding" = "https://donate.pypi.org"
+# "Say Thanks!" = "http://saythanks.io/to/example"
+"Source" = "https://github.com/sarimbinwaseem/rsimageconvertor"
+
+# The following would provide a command line executable called `sample`
+# which executes the function `main` from this package when invoked.
+#[project.scripts]
+#sample = "sample:main"
+
+
+# This is configuration specific to the `setuptools` build backend.
+# If you are using a different build backend, you will need to change this.
+[tool.setuptools]
+# If there are data files included in your packages that need to be
+# installed, specify them here.
+#package-data = {"sample" = ["*.dat"]}
